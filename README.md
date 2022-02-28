@@ -7,4 +7,5 @@ poc bypass amsi resurrection whit code payload link
 
 
 amsi detect 
-[![Screenshot-5.png](https://i.postimg.cc/13MqRNLt/Screenshot-5.png)](https://postimg.cc/dhk14DQP)
+
+[![Screenshot-5.png](https://i.postimg.cc/KcL3kWdC/Screenshot-5.png)](https://postimg.cc/grz21gcK)
